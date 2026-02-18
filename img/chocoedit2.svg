@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   version="1.0"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 10732.96 4956.16"
+   enable-background="new 0 0 103.6 70.4"
+   xml:space="preserve"
+   sodipodi:docname="chocoedit.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   inkscape:export-filename="chocoedit2.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   width="10732.96"
+   height="4956.1602"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs17" /><sodipodi:namedview
+   id="namedview17"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   inkscape:zoom="5.0780642"
+   inkscape:cx="35.643504"
+   inkscape:cy="-4.1354341"
+   inkscape:window-width="1920"
+   inkscape:window-height="1080"
+   inkscape:window-x="0"
+   inkscape:window-y="0"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="Layer_1"><inkscape:page
+     x="0"
+     y="0"
+     width="10732.96"
+     height="4956.1602"
+     id="page2"
+     margin="0"
+     bleed="0" /></sodipodi:namedview>
+<g
+   id="g7">
+	<rect
+   y="17.200001"
+   fill="#884b2e"
+   width="103.6"
+   height="53.200001"
+   id="rect1"
+   x="0" />
+	<g
+   id="g1">
+		<polygon
+   opacity="0.2"
+   fill="#ffffff"
+   points="5.7,64.5 33,64.5 35.2,70.4 37.5,64.5 66.1,64.5 68.3,70.4 70.6,64.5 98,64.5 98,34.6 103.6,34.6 103.6,70.4 0,70.4 "
+   id="polygon1" />
+	</g>
+	<polygon
+   opacity="0.3"
+   fill="#ffffff"
+   points="66.1,64.5 66.1,36.5 68.3,36.5 68.3,70.4 "
+   id="polygon2" />
+	<polygon
+   opacity="0.3"
+   fill="#ffffff"
+   points="33,64.5 33,36.5 35.2,36.5 35.2,70.4 "
+   id="polygon3" />
+	<g
+   opacity="0.2"
+   id="g6">
+		<polygon
+   fill="#12100b"
+   points="68.3,70.4 68.3,36.5 70.6,36.5 70.6,64.5 "
+   id="polygon4" />
+		<polygon
+   fill="#12100b"
+   points="35.2,70.4 35.2,36.5 37.5,36.5 37.5,64.5 "
+   id="polygon5" />
+		<polygon
+   fill="#12100b"
+   points="0,70.4 0,33.6 5.7,33.6 5.7,64.5 "
+   id="polygon6" />
+	</g>
+</g>
+<g
+   id="g10"
+   transform="scale(1,0.7677112)">
+	<g
+   id="g9">
+		<g
+   id="g8">
+			<polygon
+   fill="#80b5e3"
+   points="98,52.4 88.5,50.6 79.1,56.8 75.3,52.4 60.9,55 53.2,50.1 47.8,53.8 35,49.1 27.5,51.2 15.6,54.7 5.6,52.4 0,48 0,0 103.6,0 103.6,48.4 "
+   id="polygon7" />
+		</g>
+	</g>
+</g>
+<path
+   fill="#fdc300"
+   d="m 42.3,19.6 c 0,0 0.1,0 0,0 0.1,0 0,0 0,0 z"
+   id="path10" />
+
+<polygon
+   opacity="0.2"
+   fill="#ffffff"
+   points="103.6,0 98,0 98,52.4 103.6,48.4 "
+   id="polygon16" />
+<polygon
+   opacity="0.2"
+   fill="#12100b"
+   points="5.6,52.4 5.6,0 0,0 0,48 "
+   id="polygon17" />
+</svg>

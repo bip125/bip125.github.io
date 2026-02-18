@@ -1,0 +1,19 @@
+  photos/
+  ├── vacation/
+  │   ├── img001.jpg
+  │   └── img002.jpg
+  └── portraits/
+      └── img003.jpg
+
+        │  DirectoryProcessor
+        v
+
+  photos/
+  ├── index.html         (gallery root)
+  ├── vacation/
+  │   ├── index.html     (sub-gallery)
+  │   ├── img001.html    (image page)
+  │   └── img002.html
+  └── portraits/
+      ├── index.html
+      └── img003.html

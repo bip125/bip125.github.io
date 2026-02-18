@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Проекты — BIP125</title>
+  <meta name="description" content="Проекты с открытым кодом от bip125. Инструменты и утилиты на Rust, C, Shell и других языках.">
+  <meta property="og:title" content="Проекты — BIP125">
+  <meta property="og:description" content="Проекты с открытым кодом от bip125. Инструменты и утилиты на Rust, C, Shell и других языках.">
+  <meta property="og:image" content="https://bip125.github.io/img/og-image.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/NotoSans-v39-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/NotoSans-v39-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <a href="#content" class="skip-link">Перейти к содержимому</a>
+
+  <div class="top-bar">
+    <div class="page-wrap">
+      <a href="https://github.com/bip125" class="username"><img src="../img/favicon.svg" alt="" class="username-logo img-hover">bip125</a>
+      <a href="../en/projects.html" class="lang-switch">EN</a>
+    </div>
+  </div>
+
+  <nav class="site-nav">
+    <div class="page-wrap">
+      <table>
+        <tr>
+          <td><a href="index.html" >Главная</a></td>
+          <td><a href="projects.html" class="active">Проекты</a></td>
+          <td><a href="blog.html" >Блог</a></td>
+          <td><a href="contact.html" >Контакты</a></td>
+        </tr>
+      </table>
+    </div>
+  </nav>
+
+  <main id="content">
+    <div class="page-wrap">
+      <div class="section">
+        <div class="section-title">Проекты</div>
+        <table class="data-table projects-table">
+          <thead>
+            <tr>
+              <th scope="col">Название</th>
+              <th scope="col">Описание</th>
+              <th scope="col">Теги</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://github.com/bip125/ffmpeg_microscope"><strong>ffmpeg_microscope</strong></a></td>
+              <td>Точный инструмент анализа битрейта FFmpeg на чистом C.</td>
+              <td>c</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/bip125/runR"><strong>runR</strong></a></td>
+              <td>Простой мультиязычный запускатель кода с утилитами для Linux и Windows. Поддерживает до 16 языков.</td>
+              <td>shell</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/bip125/broadcom-wl-offline-installer"><strong>broadcom-wl-offline-installer</strong></a></td>
+              <td>Установщик модуля ядра Broadcom wl без доступа к интернету.</td>
+              <td>shell</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/bip125/Javallery"><strong>Javallery</strong></a></td>
+              <td>Просмотрщик изображений на Java.</td>
+              <td>java</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/bip125/soarerBuild"><strong>soarerBuild</strong></a></td>
+              <td>Руководство и сборка Soarer's Converter — протокол старых IBM-клавиатур в стандартный USB.</td>
+              <td>hardware</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <details class="collapsible">
+          <summary>ffmpeg_microscope — подробнее</summary>
+          <div class="collapsible-body">
+            <p>Ядро статистики. Вычисляет перцентили, минимум/максимум и средние значения из CSV-данных битрейта FFmpeg.</p>
+<pre class="code-block"><code>
+  FFmpeg CSV output          ffmpeg_microscope
+ ┌──────────────┐      ┌──────────────────────┐
+ │ time,bitrate │─────&gt;│  parse_csv()          │
+ │ 0.00,  4521  │      │         │             │
+ │ 1.00,  3892  │      │         v             │
+ │ 2.00,  5103  │      │  compute_statistics() │
+ │ ...          │      │         │             │
+ └──────────────┘      │         v             │
+                       │  ┌─────────────────┐  │
+                       │  │ min / max / avg  │  │
+                       │  │ median / p95     │  │
+                       │  │ std deviation    │  │
+                       │  │ stability index  │  │
+                       │  └─────────────────┘  │
+                       │         │             │
+                       │         v             │
+                       │    print_report()     │
+                       └──────────┬───────────┘
+                                  │
+                                  v
+                          formatted report
+                          to stdout
+</code></pre>
+<pre class="code-block"><code>
+<span class="hl-keyword">void</span> compute_statistics(<span class="hl-type">Dataset</span> *ds, <span class="hl-type">Statistics</span> *stats) {
+    <span class="hl-keyword">if</span> (ds-&gt;count == <span class="hl-number">0</span>) <span class="hl-keyword">return</span>;
+
+    <span class="hl-keyword">double</span> *bitrates = (<span class="hl-keyword">double</span>*)malloc(<span class="hl-keyword">sizeof</span>(<span class="hl-keyword">double</span>) * ds-&gt;count);
+    <span class="hl-keyword">double</span> sum = <span class="hl-number">0</span>, min = ds-&gt;data[<span class="hl-number">0</span>].bitrate, max = ds-&gt;data[<span class="hl-number">0</span>].bitrate;
+
+    <span class="hl-keyword">for</span> (<span class="hl-keyword">int</span> i = <span class="hl-number">0</span>; i &lt; ds-&gt;count; i++) {
+        <span class="hl-keyword">double</span> br = ds-&gt;data[i].bitrate;
+        bitrates[i] = br;
+        sum += br;
+        <span class="hl-keyword">if</span> (br &lt; min) min = br;
+        <span class="hl-keyword">if</span> (br &gt; max) max = br;
+    }
+
+    <span class="hl-keyword">double</span> avg = sum / ds-&gt;count;
+    sort_doubles(bitrates, ds-&gt;count);
+    stats-&gt;max = max; stats-&gt;min = min; stats-&gt;avg = avg;
+    stats-&gt;median = calculate_percentile(bitrates, ds-&gt;count, <span class="hl-number">50</span>);
+}
+</code></pre>
+            <a href="../snippets/ffmpeg_microscope.c" download class="snippet-download">скачать ffmpeg_microscope.c</a>
+          </div>
+        </details>
+
+        <details class="collapsible">
+          <summary>runR — подробнее</summary>
+          <div class="collapsible-body">
+            <p>Карта языков и автовыбор. Сопоставляет расширения файлов с компиляторами/интерпретаторами, автоматически находит исходный файл.</p>
+<pre class="code-block"><code>
+  $ runr hello.c                $ runr
+  │                             │
+  v                             v
+  extension = "c"          auto_select_file()
+  │                             │
+  v                             v
+  runmap["c"] = "gcc"      scan *.{py,c,rs,...}
+  │                             │
+  v                             v
+  ┌─────────────────┐     found 1 match?
+  │ gcc hello.c -o  │     ├─ yes ──&gt; run it
+  │   /tmp/hello    │     └─ no ───&gt; error
+  │ /tmp/hello      │
+  └─────────────────┘
+</code></pre>
+<pre class="code-block"><code>
+<span class="hl-keyword">declare</span> -A runmap=(
+  [py]=<span class="hl-string">"python3"</span>  [c]=<span class="hl-string">"gcc"</span>       [cpp]=<span class="hl-string">"g++"</span>
+  [java]=<span class="hl-string">"javac"</span>  [d]=<span class="hl-string">"dmd"</span>       [go]=<span class="hl-string">"go run"</span>
+  [js]=<span class="hl-string">"node"</span>     [ts]=<span class="hl-string">"ts-node"</span>  [rb]=<span class="hl-string">"ruby"</span>
+  [rs]=<span class="hl-string">"rustc"</span>    [kt]=<span class="hl-string">"kotlinc"</span>  [swift]=<span class="hl-string">"swift"</span>
+  [php]=<span class="hl-string">"php"</span>     [sh]=<span class="hl-string">"bash"</span>     [pl]=<span class="hl-string">"perl"</span>
+  [lua]=<span class="hl-string">"lua"</span>
+)
+
+auto_select_file() {
+    <span class="hl-keyword">if</span> [[ -n <span class="hl-string">"<span class="hl-variable">$file</span>"</span> ]]; <span class="hl-keyword">then</span> <span class="hl-keyword">return</span>; <span class="hl-keyword">fi</span>
+    <span class="hl-keyword">shopt</span> -s nullglob
+    <span class="hl-keyword">local</span> candidates=()
+    <span class="hl-keyword">for</span> ext <span class="hl-keyword">in</span> <span class="hl-string">"<span class="hl-variable">${!runmap[@]}</span>"</span>; <span class="hl-keyword">do</span>
+        <span class="hl-keyword">local</span> files=( *.<span class="hl-string">"<span class="hl-variable">$ext</span>"</span> )
+        <span class="hl-keyword">if</span> [[ <span class="hl-variable">${#files[@]}</span> -eq <span class="hl-number">1</span> ]]; <span class="hl-keyword">then</span>
+            candidates+=(<span class="hl-string">"<span class="hl-variable">${files[<span class="hl-number">0</span>]}</span>"</span>)
+        <span class="hl-keyword">fi</span>
+    <span class="hl-keyword">done</span>
+}
+</code></pre>
+            <a href="../snippets/runr.sh" download class="snippet-download">скачать runr.sh</a>
+          </div>
+        </details>
+
+        <details class="collapsible">
+          <summary>broadcom-wl-offline-installer — подробнее</summary>
+          <div class="collapsible-body">
+            <p>Чёрный список модулей и загрузка драйвера. Выгружает конфликтующие модули ядра и записывает постоянный чёрный список.</p>
+<pre class="code-block"><code>
+  installer.sh
+  │
+  ├─ 1. check_dependencies()
+  │     └─ verify kernel-devel, gcc, make
+  │
+  ├─ 2. configure_modules()
+  │     ├─ unload: b43, ssb, bcma, brcmsmac
+  │     └─ write /etc/modprobe.d/blacklist-broadcom.conf
+  │
+  ├─ 3. build_driver()
+  │     ├─ extract wl-kmod source
+  │     ├─ make -C /lib/modules/$(uname -r)/build
+  │     └─ install wl.ko
+  │
+  └─ 4. load_driver()
+        ├─ depmod -a
+        └─ modprobe wl
+</code></pre>
+<pre class="code-block"><code>
+configure_modules() {
+    log <span class="hl-string">"Unloading conflicting modules..."</span>
+    <span class="hl-keyword">for</span> mod <span class="hl-keyword">in</span> <span class="hl-string">"<span class="hl-variable">${CONFLICTING_MODS[@]}</span>"</span>; <span class="hl-keyword">do</span>
+        <span class="hl-keyword">if</span> lsmod | grep -q <span class="hl-string">"^<span class="hl-variable">$mod</span>"</span>; <span class="hl-keyword">then</span>
+            modprobe -r <span class="hl-string">"<span class="hl-variable">$mod</span>"</span> <span class="hl-number">2</span>&gt;/dev/null || warn <span class="hl-string">"Could not unload <span class="hl-variable">$mod</span>"</span>
+        <span class="hl-keyword">fi</span>
+    <span class="hl-keyword">done</span>
+
+    log <span class="hl-string">"Updating blacklist..."</span>
+    {
+        <span class="hl-keyword">echo</span> <span class="hl-string">"# Generated by installer.sh"</span>
+        <span class="hl-keyword">for</span> mod <span class="hl-keyword">in</span> <span class="hl-string">"<span class="hl-variable">${CONFLICTING_MODS[@]}</span>"</span>; <span class="hl-keyword">do</span>
+            <span class="hl-keyword">echo</span> <span class="hl-string">"blacklist <span class="hl-variable">$mod</span>"</span>
+        <span class="hl-keyword">done</span>
+    } &gt; <span class="hl-string">"<span class="hl-variable">$BLACKLIST_FILE</span>"</span>
+}
+</code></pre>
+            <a href="../snippets/broadcom-wl.sh" download class="snippet-download">скачать broadcom-wl.sh</a>
+          </div>
+        </details>
+
+        <details class="collapsible">
+          <summary>Javallery — подробнее</summary>
+          <div class="collapsible-body">
+            <p>Рекурсивный обработчик каталогов. Обходит дерево папок и генерирует статические HTML-страницы галереи для каждого уровня.</p>
+<pre class="code-block"><code>
+  photos/
+  ├── vacation/
+  │   ├── img001.jpg
+  │   └── img002.jpg
+  └── portraits/
+      └── img003.jpg
+
+        │  DirectoryProcessor
+        v
+
+  photos/
+  ├── index.html         (gallery root)
+  ├── vacation/
+  │   ├── index.html     (sub-gallery)
+  │   ├── img001.html    (image page)
+  │   └── img002.html
+  └── portraits/
+      ├── index.html
+      └── img003.html
+</code></pre>
+<pre class="code-block"><code>
+<span class="hl-keyword">public</span> <span class="hl-keyword">class</span> <span class="hl-type">DirectoryProcessor</span> {
+    <span class="hl-keyword">private</span> <span class="hl-type">File</span> rootDirectory;
+    <span class="hl-keyword">private</span> <span class="hl-type">HtmlGenerator</span> htmlGenerator;
+
+    <span class="hl-keyword">public</span> <span class="hl-keyword">void</span> process() {
+        processDirectory(<span class="hl-keyword">this</span>.rootDirectory, true);
+        <span class="hl-keyword">this</span>.htmlGenerator.generateMakefile();
+    }
+
+    <span class="hl-keyword">private</span> <span class="hl-keyword">void</span> processDirectory(<span class="hl-type">File</span> dir, <span class="hl-type">boolean</span> isRoot) {
+        <span class="hl-type">Directory</span> directory = <span class="hl-keyword">new</span> <span class="hl-type">Directory</span>(dir, isRoot);
+        <span class="hl-keyword">this</span>.htmlGenerator.generateIndexHtml(directory);
+        <span class="hl-keyword">this</span>.htmlGenerator.generateImageHtmlFiles(directory);
+        <span class="hl-keyword">for</span> (<span class="hl-type">File</span> subdir : directory.getSubdirectories()) {
+            processDirectory(subdir, false);
+        }
+    }
+}
+</code></pre>
+            <a href="../snippets/javallery.java" download class="snippet-download">скачать javallery.java</a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-wrap">
+      <span>&copy; 2026 bip125</span>
+      <span>v1.0.0</span>
+      <a href="mailto:bip125@yandex.com">bip125@yandex.com</a>
+    </div>
+  </footer>
+
+</body>
+</html>

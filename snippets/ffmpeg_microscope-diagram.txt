@@ -1,0 +1,22 @@
+  FFmpeg CSV output          ffmpeg_microscope
+ ┌──────────────┐      ┌──────────────────────┐
+ │ time,bitrate │─────>│  parse_csv()          │
+ │ 0.00,  4521  │      │         │             │
+ │ 1.00,  3892  │      │         v             │
+ │ 2.00,  5103  │      │  compute_statistics() │
+ │ ...          │      │         │             │
+ └──────────────┘      │         v             │
+                       │  ┌─────────────────┐  │
+                       │  │ min / max / avg  │  │
+                       │  │ median / p95     │  │
+                       │  │ std deviation    │  │
+                       │  │ stability index  │  │
+                       │  └─────────────────┘  │
+                       │         │             │
+                       │         v             │
+                       │    print_report()     │
+                       └──────────┬───────────┘
+                                  │
+                                  v
+                          formatted report
+                          to stdout
