@@ -1,0 +1,14 @@
+  $ runr hello.c                $ runr
+  │                             │
+  v                             v
+  extension = "c"          auto_select_file()
+  │                             │
+  v                             v
+  runmap["c"] = "gcc"      scan *.{py,c,rs,...}
+  │                             │
+  v                             v
+  ┌─────────────────┐     found 1 match?
+  │ gcc hello.c -o  │     ├─ yes ──> run it
+  │   /tmp/hello    │     └─ no ───> error
+  │ /tmp/hello      │
+  └─────────────────┘

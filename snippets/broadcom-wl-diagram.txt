@@ -1,0 +1,17 @@
+  installer.sh
+  │
+  ├─ 1. check_dependencies()
+  │     └─ verify kernel-devel, gcc, make
+  │
+  ├─ 2. configure_modules()
+  │     ├─ unload: b43, ssb, bcma, brcmsmac
+  │     └─ write /etc/modprobe.d/blacklist-broadcom.conf
+  │
+  ├─ 3. build_driver()
+  │     ├─ extract wl-kmod source
+  │     ├─ make -C /lib/modules/$(uname -r)/build
+  │     └─ install wl.ko
+  │
+  └─ 4. load_driver()
+        ├─ depmod -a
+        └─ modprobe wl
